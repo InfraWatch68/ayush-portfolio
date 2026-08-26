@@ -121,16 +121,16 @@
     cursor: pointer; transition: color .2s ease, border-color .2s ease;
   }
   .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
-  .nav-cta {
+  .nav-links a.nav-cta {
     font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.04em;
-    text-decoration: none; color: var(--paper); background: var(--ink);
+    text-decoration: none; color: #ffffff; background: var(--ink);
     padding: 8px 15px; border-radius: 2px; border: 1px solid transparent;
     transition: background .2s ease, color .35s ease;
   }
-  .nav-cta:hover { background: var(--accent-deep); }
-  /* dark mode: match the CV button to the hero "Email me" ghost style */
-  html[data-theme="dark"] .nav-cta { background: transparent; color: var(--ink); border-color: var(--line); }
-  html[data-theme="dark"] .nav-cta:hover { background: var(--accent-deep); color: var(--paper); border-color: var(--accent-deep); }
+  .nav-links a.nav-cta:hover { background: var(--accent-deep); color: #ffffff; }
+  /* dark mode: match the CV button to the hero "Email me" ghost style (unchanged) */
+  html[data-theme="dark"] .nav-links a.nav-cta { background: transparent; color: var(--ink); border-color: var(--line); }
+  html[data-theme="dark"] .nav-links a.nav-cta:hover { background: var(--accent-deep); color: var(--paper); border-color: var(--accent-deep); }
   @media (max-width: 720px) { .nav-links .hide-sm { display: none; } }
 
   /* ---------- hero ---------- */
