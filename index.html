@@ -143,8 +143,9 @@
     position: absolute; inset: 0; width: 100%; height: 100%;
     z-index: 1; pointer-events: none;
   }
-  .contours .line { fill: none; stroke: var(--line); stroke-width: 1.15; opacity: 0.38; }
-  .contours .index { stroke: var(--accent); stroke-width: 1.7; opacity: 0.55; }
+  .contours use { fill: none; }
+  .contours .line { fill: none; stroke: var(--line); stroke-width: 1.15; opacity: 0.45; }
+  .contours .index { fill: none; stroke: var(--accent); stroke-width: 1.7; opacity: 0.6; }
   .contour-drift { animation: drift 16s ease-in-out infinite alternate; transform-origin: center; }
   @keyframes drift { from { transform: translateY(-7px); } to { transform: translateY(7px); } }
 
