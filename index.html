@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ayush Karki — Civil Engineering · Hydrology & Geospatial ML</title>
-<meta name="description" content="Ayush Karki — civil engineer working on machine learning and hydrological modelling for data-sparse Himalayan water and hazard systems." />
+<title>Ayush Karki — Civil Engineering · Water Resources & Geospatial ML</title>
+<meta name="description" content="Ayush Karki — civil engineer working across water resources, hydrology, hydraulics, remote sensing and applied machine learning." />
+<script>(function(){try{var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -18,10 +19,23 @@
     --line: #D3DAD7;
     --accent: #0E7C86;
     --accent-deep: #0A5A61;
+    --nav-bg: rgba(246,247,244,0.82);
     --maxw: 1060px;
     --display: "Space Grotesk", sans-serif;
     --body: "IBM Plex Sans", sans-serif;
     --mono: "IBM Plex Mono", monospace;
+  }
+
+  html[data-theme="dark"] {
+    --ink: #E7ECEA;
+    --ink-soft: #AEBAB8;
+    --muted: #7F8D8B;
+    --paper: #0D1418;
+    --raise: #131E24;
+    --line: #26333A;
+    --accent: #2BB3BD;
+    --accent-deep: #74D4DB;
+    --nav-bg: rgba(13,20,24,0.82);
   }
 
   * { box-sizing: border-box; }
@@ -37,6 +51,7 @@
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    transition: background .35s ease, color .35s ease;
   }
 
   a { color: inherit; }
@@ -77,10 +92,10 @@
   /* ---------- nav ---------- */
   nav {
     position: sticky; top: 0; z-index: 50;
-    background: rgba(246,247,244,0.82);
+    background: var(--nav-bg);
     backdrop-filter: saturate(140%) blur(9px);
     border-bottom: 1px solid transparent;
-    transition: border-color .3s ease;
+    transition: border-color .3s ease, background .35s ease;
   }
   nav.scrolled { border-bottom-color: var(--line); }
   .nav-inner {
@@ -99,10 +114,17 @@
     transition: color .2s ease;
   }
   .nav-links a:hover { color: var(--accent); }
+  .theme-toggle {
+    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--ink-soft); background: transparent;
+    border: 1px solid var(--line); border-radius: 2px; padding: 6px 10px;
+    cursor: pointer; transition: color .2s ease, border-color .2s ease;
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
   .nav-cta {
     font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.04em;
     text-decoration: none; color: var(--paper); background: var(--ink);
-    padding: 8px 15px; border-radius: 2px; transition: background .2s ease;
+    padding: 8px 15px; border-radius: 2px; transition: background .2s ease, color .35s ease;
   }
   .nav-cta:hover { background: var(--accent-deep); }
   @media (max-width: 720px) { .nav-links .hide-sm { display: none; } }
@@ -134,10 +156,11 @@
   .hero .role {
     font-family: var(--mono); font-size: clamp(0.82rem, 1.7vw, 0.95rem);
     letter-spacing: 0.04em; color: var(--accent-deep); margin: 0 0 30px;
+    max-width: 46ch;
   }
   .hero .thesis {
     font-size: clamp(1.12rem, 2.4vw, 1.5rem); line-height: 1.42;
-    max-width: 30ch; color: var(--ink); font-weight: 400; margin: 0 0 40px;
+    max-width: 34ch; color: var(--ink); font-weight: 400; margin: 0 0 40px;
   }
   .hero .thesis em { font-style: normal; color: var(--accent-deep); border-bottom: 1.5px solid rgba(14,124,134,0.35); }
   .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
@@ -192,9 +215,16 @@
     font-family: var(--display); font-weight: 500; font-size: 1.28rem; line-height: 1.3;
     letter-spacing: -0.015em; margin: 0 0 6px;
   }
-  .card .venue { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); margin: 0 0 18px; letter-spacing: 0.03em; }
+  .card .venue { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); margin: 0 0 12px; letter-spacing: 0.03em; }
   .card .summary { color: var(--ink-soft); margin: 0 0 22px; }
   .card .summary strong { color: var(--ink); font-weight: 600; }
+  .preprint-link {
+    display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono);
+    font-size: 0.76rem; letter-spacing: 0.03em; color: var(--accent);
+    text-decoration: none; margin: 0 0 22px; border-bottom: 1px solid transparent;
+    transition: border-color .2s ease;
+  }
+  .preprint-link:hover { border-bottom-color: var(--accent); }
 
   .method-label {
     font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase;
@@ -208,6 +238,17 @@
     border: 1.5px solid var(--accent); border-radius: 50%;
   }
   .method li strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- thesis title link ---------- */
+  .thesis-title-link { color: inherit; text-decoration: none; display: inline; }
+  .thesis-title-link .pdf-tag {
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid var(--line); border-radius: 2px; padding: 3px 7px;
+    opacity: 0.6; transition: opacity .2s ease, border-color .2s ease; white-space: nowrap;
+    vertical-align: middle; margin-left: 10px;
+  }
+  .thesis-title-link:hover { color: var(--accent-deep); }
+  .thesis-title-link:hover .pdf-tag { opacity: 1; border-color: var(--accent); }
 
   /* ---------- skills ---------- */
   .skill-group { margin-bottom: 40px; }
@@ -230,7 +271,8 @@
   }
 
   /* ---------- education ---------- */
-  .edu { display: grid; grid-template-columns: 150px 1fr; gap: 30px; align-items: start; }
+  .edu { display: grid; grid-template-columns: 150px 1fr; gap: 30px; align-items: start; margin-bottom: 34px; }
+  .edu:last-child { margin-bottom: 0; }
   .edu .when { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); letter-spacing: 0.04em; padding-top: 3px; }
   .edu h3 { font-family: var(--display); font-weight: 500; font-size: 1.22rem; margin: 0 0 4px; letter-spacing: -0.01em; }
   .edu .inst { color: var(--ink-soft); margin: 0 0 16px; }
@@ -252,8 +294,10 @@
   .contact-meta a { text-decoration: none; }
   .contact-meta a:hover { color: var(--accent); }
   footer { border-top: 1px solid var(--line); padding: 26px 0 40px; }
-  .foot-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+  .foot-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: center; }
   .foot-inner p { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; margin: 0; }
+  .foot-inner a { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; text-decoration: none; }
+  .foot-inner a:hover { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -266,6 +310,7 @@
       <a href="#thesis" class="hide-sm">Thesis</a>
       <a href="#skills" class="hide-sm">Skills</a>
       <a href="#education" class="hide-sm">Education</a>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾ Dark</button>
       <a class="nav-cta" href="Ayush_Karki_Academic_CV.pdf" target="_blank" rel="noopener">CV ↓</a>
     </div>
   </div>
@@ -295,8 +340,8 @@
   <div class="hero-inner reveal">
     <p class="hero-coord">27.7172° N · 85.3240° E — Kathmandu, Nepal</p>
     <h1>Ayush<br />Karki</h1>
-    <p class="role">Civil Engineer · Hydrology, Geospatial ML &amp; Remote Sensing</p>
-    <p class="thesis">I build machine-learning and hydrological models for data-sparse Himalayan terrain — and make them say where they <em>can, and cannot,</em> be trusted.</p>
+    <p class="role">Civil Engineer · Water Resources, Hydrology &amp; Hydraulics · Remote Sensing · Applied Machine Learning</p>
+    <p class="thesis">I work across water resources engineering — <em>hydrology, hydraulics and fluid dynamics</em> — using remote sensing and machine learning to turn scarce environmental data into models that are accurate and honest about what they can, and cannot, predict.</p>
     <div class="hero-actions">
       <a class="btn btn-solid" href="Ayush_Karki_Academic_CV.pdf" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
@@ -313,15 +358,16 @@
       <p class="eyebrow reveal">Profile</p>
       <div class="about-grid">
         <p class="about-lead reveal">
-          I'm a <strong>Civil Engineering graduate</strong> from Pulchowk Campus, IOE, Tribhuvan University, working at the
-          intersection of <strong>hydrology, remote sensing and applied machine learning</strong>. My focus is the kind of
-          water and hazard problems that are hardest to model well — steep, monsoon-driven, data-sparse Himalayan systems —
-          where a prediction is only useful if it comes with an honest account of its own reliability.
+          I'm a <strong>Civil Engineering graduate</strong> from Pulchowk Campus, IOE, Tribhuvan University. My interests span
+          <strong>water resources engineering</strong> — hydrology, hydraulics and fluid dynamics — together with
+          <strong>remote sensing</strong> and <strong>applied machine learning</strong>. I'm drawn to problems where physical
+          understanding and data-driven methods meet: building models that are not only accurate but honest about their own
+          uncertainty, and that hold up in the data-sparse conditions common to real-world engineering.
         </p>
         <div class="facts reveal">
           <div class="fact"><span class="k">Degree</span><span class="v">B.E. Civil Engineering</span></div>
-          <div class="fact"><span class="k">Standing</span><span class="v">74.46% · First Division</span></div>
-          <div class="fact"><span class="k">Focus</span><span class="v">Water · Geohazards · Geospatial ML</span></div>
+          <div class="fact"><span class="k">Standing</span><span class="v">GPA 3.55 / 4.0 · 74.46% · First Division</span></div>
+          <div class="fact"><span class="k">Focus</span><span class="v">Water Resources · Remote Sensing · ML</span></div>
           <div class="fact"><span class="k">Based in</span><span class="v">Kathmandu, Nepal</span></div>
         </div>
       </div>
@@ -346,6 +392,9 @@
           susceptibility for the Karnali Highway and pairs the map with an explicit <strong>reliability layer</strong> — a
           spatial guide to where the model should, and should not, drive engineering decisions.
         </p>
+        <a class="preprint-link" href="https://doi.org/10.31223/X5C21W" target="_blank" rel="noopener">
+          Read the preprint (EarthArXiv) → doi.org/10.31223/X5C21W
+        </a>
         <p class="method-label">Methods &amp; technical contribution</p>
         <ul class="method">
           <li><strong>Feature engineering:</strong> built nine topography, hydrology, land-cover and road-proximity conditioning factors, with raster workflows for NDVI/NDWI, resampling, masking, raster-stack preparation and prediction-map export (rasterio, GeoPandas, NumPy).</li>
@@ -356,22 +405,6 @@
           <li><strong>Deep learning:</strong> prototyped CNN workflows with Optuna-based tuning for patch-based hazard modelling (PyTorch).</li>
         </ul>
       </article>
-
-      <!-- To add a project later, copy this block and edit it:
-      <article class="card reveal">
-        <div class="card-top">
-          <span class="tag tag-live">Personal project</span>
-          <span class="tag tag-role">Solo</span>
-        </div>
-        <h3>Project title</h3>
-        <p class="venue">Context · dates</p>
-        <p class="summary">One-paragraph summary of what it does and why it matters.</p>
-        <p class="method-label">What I built</p>
-        <ul class="method">
-          <li><strong>Label:</strong> detail.</li>
-        </ul>
-      </article>
-      -->
     </div>
   </section>
 
@@ -380,11 +413,16 @@
       <p class="eyebrow reveal">Final-Year Thesis</p>
       <div class="about-grid">
         <div class="reveal">
-          <h2 class="section-title" style="margin-bottom:18px;">Pre-Feasibility Study of the Manohara Irrigation Project</h2>
+          <h2 class="section-title" style="margin-bottom:18px;">
+            <a class="thesis-title-link" href="Manohara_Irrigation_Prefeasibility_Report.pdf" target="_blank" rel="noopener" title="Open the full report (PDF)">
+              Pre-Feasibility Study of the Manohara Irrigation Project<span class="pdf-tag">Open PDF ↗</span>
+            </a>
+          </h2>
           <p class="about-lead" style="font-size:1.05rem;">
-            A full pre-feasibility workup for an irrigation scheme: I analysed DHM hydro-meteorological records to derive
-            monthly flows, irrigation water demand and the 100-year flood discharge, then carried the hydrology through to the
-            hydraulic design of the intake, canal, settling basin and distribution structures using HEC-RAS and QGIS.
+            A full pre-feasibility workup for an irrigation scheme, completed as our final-year group project: we analysed DHM
+            hydro-meteorological records to derive monthly flows, irrigation water demand and the 100-year flood discharge, then
+            carried the hydrology through to the hydraulic design of the intake, canal, settling basin and distribution structures
+            using HEC-RAS and QGIS.
           </p>
         </div>
         <div class="facts reveal">
@@ -467,16 +505,30 @@
         <div class="when">2019 — 2024</div>
         <div>
           <h3>B.E. in Civil Engineering</h3>
-          <p class="inst">Pulchowk Campus, Institute of Engineering, Tribhuvan University, Nepal · 74.46%, First Division.</p>
+          <p class="inst">Pulchowk Campus, Institute of Engineering, Tribhuvan University, Nepal · GPA 3.55 / 4.0 · 74.46%, First Division.</p>
           <div class="coursework">
             <span class="chip">Hydrology</span>
             <span class="chip">Water Resources Engineering</span>
             <span class="chip">Hydraulics</span>
+            <span class="chip">Fluid Mechanics</span>
             <span class="chip">GIS &amp; Remote Sensing</span>
             <span class="chip">Numerical Methods</span>
             <span class="chip">Probability &amp; Statistics</span>
             <span class="chip">Engineering Design</span>
             <span class="chip">Surveying</span>
+          </div>
+        </div>
+      </div>
+      <div class="edu reveal">
+        <div class="when">2017 — 2019</div>
+        <div>
+          <h3>Higher Secondary (10+2, Science)</h3>
+          <p class="inst">Himalayan WhiteHouse International College, Kathmandu, Nepal · CGPA 3.61 / 4.0.</p>
+          <div class="coursework">
+            <span class="chip">Physics</span>
+            <span class="chip">Chemistry</span>
+            <span class="chip">Mathematics</span>
+            <span class="chip">Computer Science</span>
           </div>
         </div>
       </div>
@@ -490,7 +542,8 @@
         <a class="contact-big" href="mailto:ayushkarki.official@gmail.com">ayushkarki.official@gmail.com</a>
         <div class="contact-meta">
           <div>Kathmandu, Nepal</div>
-          <div><a href="tel:+9779813959904">+977 9813959904</a></div>
+          <div><a href="https://wa.me/9779813959904" target="_blank" rel="noopener">Phone / WhatsApp: +977 9813959904</a></div>
+          <div><a href="https://www.linkedin.com/in/ayush-karki-bb1518255/" target="_blank" rel="noopener">LinkedIn ↗</a></div>
           <div><a href="Ayush_Karki_Academic_CV.pdf" target="_blank" rel="noopener">Academic CV (PDF) ↓</a></div>
         </div>
       </div>
@@ -501,11 +554,25 @@
 <footer>
   <div class="wrap foot-inner">
     <p>© 2026 Ayush Karki</p>
-    <p>Built by hand · Kathmandu</p>
+    <a href="https://www.linkedin.com/in/ayush-karki-bb1518255/" target="_blank" rel="noopener">LinkedIn ↗</a>
   </div>
 </footer>
 
 <script>
+  // theme toggle
+  const root = document.documentElement;
+  const themeBtn = document.getElementById('themeToggle');
+  function syncThemeLabel() {
+    themeBtn.textContent = root.getAttribute('data-theme') === 'dark' ? '☀ Light' : '☾ Dark';
+  }
+  syncThemeLabel();
+  themeBtn.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    syncThemeLabel();
+  });
+
   // nav border on scroll
   const nav = document.getElementById('nav');
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
@@ -522,7 +589,6 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
     reveals.forEach(el => io.observe(el));
-    // hero reveals immediately
     document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('in'));
   }
 </script>
