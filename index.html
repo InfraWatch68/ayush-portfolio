@@ -169,11 +169,13 @@
   }
   .hero .role {
     font-family: var(--mono); font-size: clamp(0.82rem, 1.7vw, 0.95rem);
-    letter-spacing: 0.04em; color: var(--accent-deep); margin: 0 0 30px;
+    letter-spacing: 0.04em; color: #3d686b; margin: 0 0 30px;
     max-width: 42ch; line-height: 1.7;
   }
-  /* soft glow on the letters only — no background change */
-  .hero .role span { text-shadow: 0 0 8px var(--accent), 0 0 16px var(--accent); }
+  html[data-theme="dark"] .hero .role { color: var(--accent-deep); }
+  /* light mode: user's fine-tuned buffer values; dark mode: keep the accent glow */
+  .hero .role span { text-shadow: 0 0 1.5px #696969, 0 0 0.1px #f5feff; }
+  html[data-theme="dark"] .hero .role span { text-shadow: 0 0 8px var(--accent), 0 0 16px var(--accent); }
   .hero .thesis {
     font-size: clamp(1.12rem, 2.4vw, 1.5rem); line-height: 1.42;
     max-width: 34ch; color: var(--ink); font-weight: 400; margin: 0 0 40px;
