@@ -143,8 +143,8 @@
     position: absolute; inset: 0; width: 100%; height: 100%;
     z-index: 1; pointer-events: none;
   }
-  .contours .line { fill: none; stroke: var(--line); stroke-width: 1.15; opacity: 0.55; }
-  .contours .index { stroke: var(--accent); stroke-width: 1.7; opacity: 0.85; }
+  .contours .line { fill: none; stroke: var(--line); stroke-width: 1.15; opacity: 0.38; }
+  .contours .index { stroke: var(--accent); stroke-width: 1.7; opacity: 0.55; }
   .contour-drift { animation: drift 16s ease-in-out infinite alternate; transform-origin: center; }
   @keyframes drift { from { transform: translateY(-7px); } to { transform: translateY(7px); } }
 
@@ -172,16 +172,9 @@
     letter-spacing: 0.04em; color: var(--accent-deep); margin: 0 0 30px;
     max-width: 42ch; line-height: 1.85;
   }
-  /* thin buffer/halo around each letter (QGIS text-buffer style) */
+  /* soft background-matched glow: lifts text off the contour lines with no visible outline */
   .hero .role span {
-    text-shadow:
-      -0.5px -0.5px 0 #c6cbcd, 0.5px -0.5px 0 #c6cbcd, -0.5px 0.5px 0 #c6cbcd, 0.5px 0.5px 0 #c6cbcd,
-      0 -0.75px 0 #c6cbcd, 0 0.75px 0 #c6cbcd, -0.75px 0 0 #c6cbcd, 0.75px 0 0 #c6cbcd;
-  }
-  html[data-theme="dark"] .hero .role span {
-    text-shadow:
-      -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000,
-      0 -0.75px 0 #000, 0 0.75px 0 #000, -0.75px 0 0 #000, 0.75px 0 0 #000;
+    text-shadow: 0 0 9px var(--paper), 0 0 5px var(--paper), 0 0 2px var(--paper);
   }
   .hero .thesis {
     font-size: clamp(1.12rem, 2.4vw, 1.5rem); line-height: 1.42;
