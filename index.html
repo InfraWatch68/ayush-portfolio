@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ayush Karki — Civil Engineering · Hydrology & Geospatial ML</title>
+<meta name="description" content="Ayush Karki — civil engineer working on machine learning and hydrological modelling for data-sparse Himalayan water and hazard systems." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #14212B;
+    --ink-soft: #4A5C64;
+    --muted: #7E8D92;
+    --paper: #F6F7F4;
+    --raise: #FFFFFF;
+    --line: #D3DAD7;
+    --accent: #0E7C86;
+    --accent-deep: #0A5A61;
+    --maxw: 1060px;
+    --display: "Space Grotesk", sans-serif;
+    --body: "IBM Plex Sans", sans-serif;
+    --mono: "IBM Plex Mono", monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  a { color: inherit; }
+  ::selection { background: rgba(14,124,134,0.18); }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- eyebrow / section scaffolding ---------- */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 22px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 26px;
+    height: 1px;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  section { padding: 92px 0; border-top: 1px solid var(--line); }
+  h2.section-title {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(1.5rem, 3vw, 2.05rem);
+    letter-spacing: -0.02em;
+    margin: 0 0 34px;
+    line-height: 1.15;
+  }
+
+  /* ---------- nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(246,247,244,0.82);
+    backdrop-filter: saturate(140%) blur(9px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s ease;
+  }
+  nav.scrolled { border-bottom-color: var(--line); }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 15px 28px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  }
+  .nav-brand {
+    font-family: var(--display); font-weight: 600; font-size: 0.98rem;
+    letter-spacing: -0.01em; text-decoration: none;
+  }
+  .nav-brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 26px; align-items: center; }
+  .nav-links a {
+    font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none; color: var(--ink-soft);
+    transition: color .2s ease;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.04em;
+    text-decoration: none; color: var(--paper); background: var(--ink);
+    padding: 8px 15px; border-radius: 2px; transition: background .2s ease;
+  }
+  .nav-cta:hover { background: var(--accent-deep); }
+  @media (max-width: 720px) { .nav-links .hide-sm { display: none; } }
+
+  /* ---------- hero ---------- */
+  .hero { position: relative; overflow: hidden; border-top: none; padding: 0; }
+  .hero-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 118px 28px 104px;
+    position: relative; z-index: 2;
+  }
+  .contours {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    z-index: 1; pointer-events: none;
+  }
+  .contours .line { fill: none; stroke: var(--line); stroke-width: 1.15; opacity: 0.55; }
+  .contours .index { stroke: var(--accent); stroke-width: 1.7; opacity: 0.85; }
+  .contour-drift { animation: drift 16s ease-in-out infinite alternate; transform-origin: center; }
+  @keyframes drift { from { transform: translateY(-7px); } to { transform: translateY(7px); } }
+
+  .hero-coord {
+    font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.14em;
+    color: var(--muted); text-transform: uppercase; margin: 0 0 26px;
+  }
+  .hero h1 {
+    font-family: var(--display); font-weight: 600;
+    font-size: clamp(2.7rem, 7.4vw, 5rem); line-height: 0.98;
+    letter-spacing: -0.03em; margin: 0 0 20px;
+  }
+  .hero .role {
+    font-family: var(--mono); font-size: clamp(0.82rem, 1.7vw, 0.95rem);
+    letter-spacing: 0.04em; color: var(--accent-deep); margin: 0 0 30px;
+  }
+  .hero .thesis {
+    font-size: clamp(1.12rem, 2.4vw, 1.5rem); line-height: 1.42;
+    max-width: 30ch; color: var(--ink); font-weight: 400; margin: 0 0 40px;
+  }
+  .hero .thesis em { font-style: normal; color: var(--accent-deep); border-bottom: 1.5px solid rgba(14,124,134,0.35); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .btn {
+    font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.04em;
+    text-decoration: none; padding: 12px 20px; border-radius: 2px;
+    display: inline-flex; align-items: center; gap: 9px; transition: all .2s ease;
+  }
+  .btn-solid { background: var(--ink); color: var(--paper); }
+  .btn-solid:hover { background: var(--accent-deep); transform: translateY(-1px); }
+  .btn-ghost { border: 1px solid var(--line); color: var(--ink); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent-deep); }
+  .btn svg { width: 15px; height: 15px; }
+
+  /* ---------- reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .contour-drift { animation: none; }
+    .btn:hover { transform: none; }
+  }
+
+  /* ---------- about ---------- */
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 54px; align-items: start; }
+  .about-lead { font-size: 1.16rem; line-height: 1.55; color: var(--ink); }
+  .about-lead strong { font-weight: 600; }
+  .facts { border-left: 2px solid var(--accent); padding-left: 22px; }
+  .fact { margin-bottom: 20px; }
+  .fact:last-child { margin-bottom: 0; }
+  .fact .k { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 3px; }
+  .fact .v { font-size: 0.98rem; color: var(--ink); }
+  @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; gap: 34px; } }
+
+  /* ---------- research cards ---------- */
+  .card {
+    background: var(--raise); border: 1px solid var(--line); border-radius: 4px;
+    padding: 34px 34px 30px; margin-bottom: 22px; position: relative;
+  }
+  .card::before {
+    content: ""; position: absolute; left: 0; top: 22px; bottom: 22px; width: 3px;
+    background: var(--accent); border-radius: 3px;
+  }
+  .card-top { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 16px; }
+  .tag {
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 2px;
+  }
+  .tag-live { background: rgba(14,124,134,0.12); color: var(--accent-deep); }
+  .tag-role { border: 1px solid var(--line); color: var(--ink-soft); }
+  .card h3 {
+    font-family: var(--display); font-weight: 500; font-size: 1.28rem; line-height: 1.3;
+    letter-spacing: -0.015em; margin: 0 0 6px;
+  }
+  .card .venue { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); margin: 0 0 18px; letter-spacing: 0.03em; }
+  .card .summary { color: var(--ink-soft); margin: 0 0 22px; }
+  .card .summary strong { color: var(--ink); font-weight: 600; }
+
+  .method-label {
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 12px;
+  }
+  .method { list-style: none; margin: 0; padding: 0; }
+  .method li { position: relative; padding-left: 22px; margin-bottom: 11px; color: var(--ink-soft); font-size: 0.95rem; line-height: 1.5; }
+  .method li:last-child { margin-bottom: 0; }
+  .method li::before {
+    content: ""; position: absolute; left: 0; top: 0.62em; width: 8px; height: 8px;
+    border: 1.5px solid var(--accent); border-radius: 50%;
+  }
+  .method li strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- skills ---------- */
+  .skill-group { margin-bottom: 40px; }
+  .skill-group:last-child { margin-bottom: 0; }
+  .skill-group > .grp {
+    font-family: var(--display); font-weight: 500; font-size: 1.06rem; letter-spacing: -0.01em;
+    margin: 0 0 4px; display: flex; align-items: baseline; gap: 12px;
+  }
+  .skill-group > .grp .num { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; }
+  .skill-list { border-top: 1px solid var(--line); margin-top: 16px; }
+  .skill-row {
+    display: grid; grid-template-columns: 210px 1fr; gap: 22px;
+    padding: 13px 0; border-bottom: 1px solid var(--line); align-items: baseline;
+  }
+  .skill-row .name { font-family: var(--mono); font-size: 0.86rem; color: var(--ink); letter-spacing: 0.01em; }
+  .skill-row .desc { color: var(--ink-soft); font-size: 0.94rem; line-height: 1.5; }
+  @media (max-width: 640px) {
+    .skill-row { grid-template-columns: 1fr; gap: 4px; padding: 12px 0; }
+    .skill-row .name { color: var(--accent-deep); }
+  }
+
+  /* ---------- education ---------- */
+  .edu { display: grid; grid-template-columns: 150px 1fr; gap: 30px; align-items: start; }
+  .edu .when { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); letter-spacing: 0.04em; padding-top: 3px; }
+  .edu h3 { font-family: var(--display); font-weight: 500; font-size: 1.22rem; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .edu .inst { color: var(--ink-soft); margin: 0 0 16px; }
+  .coursework { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.02em;
+    padding: 5px 11px; border: 1px solid var(--line); border-radius: 2px; color: var(--ink-soft);
+  }
+  @media (max-width: 640px) { .edu { grid-template-columns: 1fr; gap: 8px; } }
+
+  /* ---------- contact / footer ---------- */
+  .contact-flex { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; align-items: flex-end; }
+  .contact-big {
+    font-family: var(--display); font-weight: 500; font-size: clamp(1.4rem, 4vw, 2.4rem);
+    letter-spacing: -0.02em; text-decoration: none; line-height: 1.1;
+  }
+  .contact-big:hover { color: var(--accent-deep); }
+  .contact-meta { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); line-height: 1.9; letter-spacing: 0.02em; }
+  .contact-meta a { text-decoration: none; }
+  .contact-meta a:hover { color: var(--accent); }
+  footer { border-top: 1px solid var(--line); padding: 26px 0 40px; }
+  .foot-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+  .foot-inner p { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; margin: 0; }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top">Ayush Karki<span>.</span></a>
+    <div class="nav-links">
+      <a href="#research" class="hide-sm">Research</a>
+      <a href="#thesis" class="hide-sm">Thesis</a>
+      <a href="#skills" class="hide-sm">Skills</a>
+      <a href="#education" class="hide-sm">Education</a>
+      <a class="nav-cta" href="Ayush_Karki_Academic_CV.pdf" target="_blank" rel="noopener">CV ↓</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <svg class="contours" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <path id="ridge" d="M -80 380 C 180 316 360 316 540 372 C 720 428 900 452 1080 398 C 1260 344 1380 356 1520 380" />
+    </defs>
+    <g class="contour-drift">
+      <use href="#ridge" class="line" y="-330" />
+      <use href="#ridge" class="line" y="-275" />
+      <use href="#ridge" class="line" y="-220" />
+      <use href="#ridge" class="line" y="-165" />
+      <use href="#ridge" class="line" y="-110" />
+      <use href="#ridge" class="line" y="-55" />
+      <use href="#ridge" class="index" y="0" />
+      <use href="#ridge" class="line" y="55" />
+      <use href="#ridge" class="line" y="110" />
+      <use href="#ridge" class="line" y="165" />
+      <use href="#ridge" class="line" y="220" />
+      <use href="#ridge" class="line" y="275" />
+      <use href="#ridge" class="line" y="330" />
+    </g>
+  </svg>
+  <div class="hero-inner reveal">
+    <p class="hero-coord">27.7172° N · 85.3240° E — Kathmandu, Nepal</p>
+    <h1>Ayush<br />Karki</h1>
+    <p class="role">Civil Engineer · Hydrology, Geospatial ML &amp; Remote Sensing</p>
+    <p class="thesis">I build machine-learning and hydrological models for data-sparse Himalayan terrain — and make them say where they <em>can, and cannot,</em> be trusted.</p>
+    <div class="hero-actions">
+      <a class="btn btn-solid" href="Ayush_Karki_Academic_CV.pdf" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+        Download CV
+      </a>
+      <a class="btn btn-ghost" href="mailto:ayushkarki.official@gmail.com">Email me</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="about">
+    <div class="wrap">
+      <p class="eyebrow reveal">Profile</p>
+      <div class="about-grid">
+        <p class="about-lead reveal">
+          I'm a <strong>Civil Engineering graduate</strong> from Pulchowk Campus, IOE, Tribhuvan University, working at the
+          intersection of <strong>hydrology, remote sensing and applied machine learning</strong>. My focus is the kind of
+          water and hazard problems that are hardest to model well — steep, monsoon-driven, data-sparse Himalayan systems —
+          where a prediction is only useful if it comes with an honest account of its own reliability.
+        </p>
+        <div class="facts reveal">
+          <div class="fact"><span class="k">Degree</span><span class="v">B.E. Civil Engineering</span></div>
+          <div class="fact"><span class="k">Standing</span><span class="v">74.46% · First Division</span></div>
+          <div class="fact"><span class="k">Focus</span><span class="v">Water · Geohazards · Geospatial ML</span></div>
+          <div class="fact"><span class="k">Based in</span><span class="v">Kathmandu, Nepal</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="wrap">
+      <p class="eyebrow reveal">Research &amp; Projects</p>
+      <h2 class="section-title reveal">Work that turns terrain data into decisions.</h2>
+
+      <article class="card reveal">
+        <div class="card-top">
+          <span class="tag tag-live">Under review · Georisk</span>
+          <span class="tag tag-role">First author</span>
+        </div>
+        <h3>Multi-Scale Pixel and Slope-Unit Landslide Susceptibility Mapping with Applicability-Domain Validation</h3>
+        <p class="venue">Georisk (Taylor &amp; Francis) · Karnali Highway corridor (~2,155 km²), western Nepal</p>
+        <p class="summary">
+          Landslides along Himalayan road corridors cause repeated loss of life and long disruptions to access, yet most
+          susceptibility maps never say how far their predictions can be trusted away from the training data. This study maps
+          susceptibility for the Karnali Highway and pairs the map with an explicit <strong>reliability layer</strong> — a
+          spatial guide to where the model should, and should not, drive engineering decisions.
+        </p>
+        <p class="method-label">Methods &amp; technical contribution</p>
+        <ul class="method">
+          <li><strong>Feature engineering:</strong> built nine topography, hydrology, land-cover and road-proximity conditioning factors, with raster workflows for NDVI/NDWI, resampling, masking, raster-stack preparation and prediction-map export (rasterio, GeoPandas, NumPy).</li>
+          <li><strong>Multi-scale design:</strong> compared pixel and slope-unit mapping units across moving-window scales of 3×3, 15×15 and 25×25 cells on a 12.5 m DEM.</li>
+          <li><strong>Modelling:</strong> trained and tuned Random Forest, RBF-SVM and XGBoost with Bayesian search, Platt-scaled probability calibration, and an equal-weight mean-probability ensemble (scikit-learn).</li>
+          <li><strong>Honest validation:</strong> used spatially blocked cross-validation with 1,000 m blocks to strip out spatial-autocorrelation optimism, then reported ROC/AUC, confusion matrices and SHAP feature-importance analysis.</li>
+          <li><strong>The reliability layer:</strong> built a Mahalanobis-distance applicability-domain mask that flags where predictions extrapolate beyond the training feature space, published as a trusted / untrusted binary.</li>
+          <li><strong>Deep learning:</strong> prototyped CNN workflows with Optuna-based tuning for patch-based hazard modelling (PyTorch).</li>
+        </ul>
+      </article>
+
+      <!-- To add a project later, copy this block and edit it:
+      <article class="card reveal">
+        <div class="card-top">
+          <span class="tag tag-live">Personal project</span>
+          <span class="tag tag-role">Solo</span>
+        </div>
+        <h3>Project title</h3>
+        <p class="venue">Context · dates</p>
+        <p class="summary">One-paragraph summary of what it does and why it matters.</p>
+        <p class="method-label">What I built</p>
+        <ul class="method">
+          <li><strong>Label:</strong> detail.</li>
+        </ul>
+      </article>
+      -->
+    </div>
+  </section>
+
+  <section id="thesis">
+    <div class="wrap">
+      <p class="eyebrow reveal">Final-Year Thesis</p>
+      <div class="about-grid">
+        <div class="reveal">
+          <h2 class="section-title" style="margin-bottom:18px;">Pre-Feasibility Study of the Manohara Irrigation Project</h2>
+          <p class="about-lead" style="font-size:1.05rem;">
+            A full pre-feasibility workup for an irrigation scheme: I analysed DHM hydro-meteorological records to derive
+            monthly flows, irrigation water demand and the 100-year flood discharge, then carried the hydrology through to the
+            hydraulic design of the intake, canal, settling basin and distribution structures using HEC-RAS and QGIS.
+          </p>
+        </div>
+        <div class="facts reveal">
+          <div class="fact"><span class="k">Domain</span><span class="v">Water resources &amp; hydraulics</span></div>
+          <div class="fact"><span class="k">Hydrology</span><span class="v">Monthly flows · demand · 100-yr flood</span></div>
+          <div class="fact"><span class="k">Tools</span><span class="v">HEC-RAS · QGIS · DHM data</span></div>
+          <div class="fact"><span class="k">Deliverable</span><span class="v">Intake, canal, settling basin, distribution design</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <p class="eyebrow reveal">Capabilities</p>
+      <h2 class="section-title reveal">Every tool here has done real work.</h2>
+
+      <div class="skill-group reveal">
+        <p class="grp">Geospatial &amp; Remote Sensing</p>
+        <div class="skill-list">
+          <div class="skill-row"><span class="name">QGIS</span><span class="desc">Primary GIS for terrain analysis, map production and the full landslide-mapping workflow.</span></div>
+          <div class="skill-row"><span class="name">ArcGIS</span><span class="desc">Spatial data preparation, geoprocessing and cartographic output.</span></div>
+          <div class="skill-row"><span class="name">rasterio · GeoPandas</span><span class="desc">Python raster/vector pipelines: NDVI/NDWI, resampling, masking, raster-stack assembly, prediction-map export.</span></div>
+          <div class="skill-row"><span class="name">DEM / terrain analysis</span><span class="desc">Slope, aspect, topographic wetness index and multi-scale moving-window features on 12.5 m DEMs.</span></div>
+          <div class="skill-row"><span class="name">SNAP</span><span class="desc">Satellite imagery processing for remote-sensing inputs.</span></div>
+          <div class="skill-row"><span class="name">PostGIS</span><span class="desc">Spatial queries and storage of vector datasets in PostgreSQL.</span></div>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <p class="grp">Machine Learning</p>
+        <div class="skill-list">
+          <div class="skill-row"><span class="name">scikit-learn</span><span class="desc">Random Forest, SVM and the full training/evaluation stack — pipelines, metrics, cross-validation.</span></div>
+          <div class="skill-row"><span class="name">XGBoost</span><span class="desc">Gradient-boosted models; strongest performer in the landslide ensemble.</span></div>
+          <div class="skill-row"><span class="name">Bayesian tuning · Optuna</span><span class="desc">Hyperparameter search for classical and deep-learning models.</span></div>
+          <div class="skill-row"><span class="name">Probability calibration</span><span class="desc">Platt scaling and calibrated probabilities so model scores mean something.</span></div>
+          <div class="skill-row"><span class="name">Spatial cross-validation</span><span class="desc">Spatially blocked CV to remove autocorrelation optimism from reported skill.</span></div>
+          <div class="skill-row"><span class="name">SHAP</span><span class="desc">Model interpretation and feature-importance analysis.</span></div>
+          <div class="skill-row"><span class="name">Applicability domain</span><span class="desc">Mahalanobis-distance masks to flag out-of-distribution predictions.</span></div>
+          <div class="skill-row"><span class="name">PyTorch</span><span class="desc">CNN prototypes for patch-based raster hazard modelling.</span></div>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <p class="grp">Hydrology &amp; Water Resources</p>
+        <div class="skill-list">
+          <div class="skill-row"><span class="name">HEC-RAS</span><span class="desc">Hydraulic modelling and flood analysis for river and canal design.</span></div>
+          <div class="skill-row"><span class="name">Flood-frequency analysis</span><span class="desc">Return-period discharge estimation, including the 100-year flood.</span></div>
+          <div class="skill-row"><span class="name">Hydrologic modelling</span><span class="desc">Monthly-flow and water-availability analysis from DHM records.</span></div>
+          <div class="skill-row"><span class="name">EPANET</span><span class="desc">Pressurised water-distribution network modelling.</span></div>
+          <div class="skill-row"><span class="name">CROPWAT · Hydrognomon</span><span class="desc">Irrigation water demand and hydrological time-series processing.</span></div>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <p class="grp">Programming &amp; Scientific Computing</p>
+        <div class="skill-list">
+          <div class="skill-row"><span class="name">Python</span><span class="desc">Primary language — NumPy, pandas, Matplotlib across every modelling and geospatial task.</span></div>
+          <div class="skill-row"><span class="name">C</span><span class="desc">Foundational programming and algorithmic work.</span></div>
+          <div class="skill-row"><span class="name">LaTeX</span><span class="desc">Scientific writing and manuscript preparation.</span></div>
+          <div class="skill-row"><span class="name">HTML · CSS · JavaScript</span><span class="desc">Front-end basics — including this site.</span></div>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <p class="grp">Civil, Structural &amp; CAD</p>
+        <div class="skill-list">
+          <div class="skill-row"><span class="name">AutoCAD · Civil 3D</span><span class="desc">Drafting and civil site/corridor design.</span></div>
+          <div class="skill-row"><span class="name">ETABS · SAFE</span><span class="desc">Structural and foundation analysis and design.</span></div>
+          <div class="skill-row"><span class="name">MS Project · MS Office</span><span class="desc">Project scheduling, documentation and reporting.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <p class="eyebrow reveal">Education</p>
+      <div class="edu reveal">
+        <div class="when">2019 — 2024</div>
+        <div>
+          <h3>B.E. in Civil Engineering</h3>
+          <p class="inst">Pulchowk Campus, Institute of Engineering, Tribhuvan University, Nepal · 74.46%, First Division.</p>
+          <div class="coursework">
+            <span class="chip">Hydrology</span>
+            <span class="chip">Water Resources Engineering</span>
+            <span class="chip">Hydraulics</span>
+            <span class="chip">GIS &amp; Remote Sensing</span>
+            <span class="chip">Numerical Methods</span>
+            <span class="chip">Probability &amp; Statistics</span>
+            <span class="chip">Engineering Design</span>
+            <span class="chip">Surveying</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <p class="eyebrow reveal">Get in touch</p>
+      <div class="contact-flex reveal">
+        <a class="contact-big" href="mailto:ayushkarki.official@gmail.com">ayushkarki.official@gmail.com</a>
+        <div class="contact-meta">
+          <div>Kathmandu, Nepal</div>
+          <div><a href="tel:+9779813959904">+977 9813959904</a></div>
+          <div><a href="Ayush_Karki_Academic_CV.pdf" target="_blank" rel="noopener">Academic CV (PDF) ↓</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <p>© 2026 Ayush Karki</p>
+    <p>Built by hand · Kathmandu</p>
+  </div>
+</footer>
+
+<script>
+  // nav border on scroll
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // scroll reveal
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reveals = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) {
+    reveals.forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(el => io.observe(el));
+    // hero reveals immediately
+    document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('in'));
+  }
+</script>
+</body>
+</html>
