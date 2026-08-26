@@ -150,7 +150,17 @@
 
   .hero-coord {
     font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.14em;
-    color: var(--muted); text-transform: uppercase; margin: 0 0 26px;
+    color: var(--muted); text-transform: uppercase; margin: 0 0 18px;
+  }
+  .availability {
+    display: inline-flex; align-items: center; gap: 9px; font-family: var(--mono);
+    font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--accent-deep); background: rgba(14,124,134,0.10);
+    border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; margin: 0 0 24px;
+  }
+  .availability .dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #1B9E4B;
+    box-shadow: 0 0 0 3px rgba(27,158,75,0.18); flex: none;
   }
   .hero h1 {
     font-family: var(--display); font-weight: 600;
@@ -345,6 +355,7 @@
   </svg>
   <div class="hero-inner reveal">
     <p class="hero-coord">27.7172° N · 85.3240° E — Kathmandu, Nepal</p>
+    <p class="availability"><span class="dot"></span>Seeking a funded MSc / PhD research assistantship · Fall 2027</p>
     <h1>Ayush<br />Karki</h1>
     <p class="role">Civil Engineer · Water Resources, Hydrology &amp; Hydraulics · Remote Sensing · Applied Machine Learning</p>
     <p class="thesis">I work across water resources engineering — <em>hydrology, hydraulics and fluid dynamics</em> — using remote sensing and machine learning to turn scarce environmental data into models that are accurate and honest about what they can, and cannot, predict.</p>
