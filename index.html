@@ -124,9 +124,13 @@
   .nav-cta {
     font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.04em;
     text-decoration: none; color: var(--paper); background: var(--ink);
-    padding: 8px 15px; border-radius: 2px; transition: background .2s ease, color .35s ease;
+    padding: 8px 15px; border-radius: 2px; border: 1px solid transparent;
+    transition: background .2s ease, color .35s ease;
   }
   .nav-cta:hover { background: var(--accent-deep); }
+  /* dark mode: match the CV button to the hero "Email me" ghost style */
+  html[data-theme="dark"] .nav-cta { background: transparent; color: var(--ink); border-color: var(--line); }
+  html[data-theme="dark"] .nav-cta:hover { background: var(--accent-deep); color: var(--paper); border-color: var(--accent-deep); }
   @media (max-width: 720px) { .nav-links .hide-sm { display: none; } }
 
   /* ---------- hero ---------- */
@@ -156,8 +160,10 @@
   .hero .role {
     font-family: var(--mono); font-size: clamp(0.82rem, 1.7vw, 0.95rem);
     letter-spacing: 0.04em; color: var(--accent-deep); margin: 0 0 30px;
-    max-width: 46ch;
+    max-width: 46ch; display: inline-block;
+    background: rgba(255,255,255,0.72); padding: 8px 14px; border-radius: 4px;
   }
+  html[data-theme="dark"] .hero .role { background: transparent; padding: 0; }
   .hero .thesis {
     font-size: clamp(1.12rem, 2.4vw, 1.5rem); line-height: 1.42;
     max-width: 34ch; color: var(--ink); font-weight: 400; margin: 0 0 40px;
@@ -366,7 +372,7 @@
         </p>
         <div class="facts reveal">
           <div class="fact"><span class="k">Degree</span><span class="v">B.E. Civil Engineering</span></div>
-          <div class="fact"><span class="k">Standing</span><span class="v">GPA 3.55 / 4.0 · 74.46% · First Division</span></div>
+          <div class="fact"><span class="k">Standing</span><span class="v">74.46% · First Division</span></div>
           <div class="fact"><span class="k">Focus</span><span class="v">Water Resources · Remote Sensing · ML</span></div>
           <div class="fact"><span class="k">Based in</span><span class="v">Kathmandu, Nepal</span></div>
         </div>
@@ -505,7 +511,7 @@
         <div class="when">2019 — 2024</div>
         <div>
           <h3>B.E. in Civil Engineering</h3>
-          <p class="inst">Pulchowk Campus, Institute of Engineering, Tribhuvan University, Nepal · GPA 3.55 / 4.0 · 74.46%, First Division.</p>
+          <p class="inst">Pulchowk Campus, Institute of Engineering, Tribhuvan University, Nepal · 74.46%, First Division.</p>
           <div class="coursework">
             <span class="chip">Hydrology</span>
             <span class="chip">Water Resources Engineering</span>
@@ -530,6 +536,13 @@
             <span class="chip">Mathematics</span>
             <span class="chip">Computer Science</span>
           </div>
+        </div>
+      </div>
+      <div class="edu reveal">
+        <div class="when">2007 — 2017</div>
+        <div>
+          <h3>School · SEE</h3>
+          <p class="inst">Lahan Merry Children School, Lahan, Siraha, Nepal · SEE GPA 3.55 / 4.0.</p>
         </div>
       </div>
     </div>
