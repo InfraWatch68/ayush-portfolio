@@ -300,6 +300,15 @@
     padding: 5px 11px; border: 1px solid var(--line); border-radius: 2px; color: var(--ink-soft);
   }
   @media (max-width: 640px) { .edu { grid-template-columns: 1fr; gap: 8px; } }
+  .show-all {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 16px;
+    font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.04em;
+    color: var(--accent); text-decoration: none;
+    border: 1px solid var(--line); border-radius: 2px; padding: 8px 14px;
+    transition: border-color .2s ease, color .2s ease, background .2s ease;
+  }
+  .show-all:hover { border-color: var(--accent); color: var(--accent-deep); background: rgba(14,124,134,0.06); }
+  .show-all svg { width: 14px; height: 14px; }
 
   /* ---------- contact / footer ---------- */
   .contact-flex { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; align-items: flex-end; }
@@ -536,6 +545,10 @@
             <span class="chip">Engineering Design</span>
             <span class="chip">Surveying</span>
           </div>
+          <a class="show-all" href="curriculum.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+            Show all courses · full curriculum →
+          </a>
         </div>
       </div>
       <div class="edu reveal">
