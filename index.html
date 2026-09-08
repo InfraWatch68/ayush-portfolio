@@ -441,7 +441,7 @@
 
       <article class="card reveal">
         <div class="card-top">
-          <span class="tag tag-live">In progress</span>
+          <span class="tag tag-live">Complete</span>
           <span class="tag tag-role">Personal project</span>
         </div>
         <h3>A Reliability-Aware ML Surrogate for EPA-SWMM Stormwater Simulation</h3>
@@ -449,21 +449,21 @@
         <p class="summary">
           Physics-based stormwater models such as EPA-SWMM are the standard for urban-drainage and overflow planning, yet
           they are far too slow to run the thousands of times that uncertainty analysis, real-time control or city-scale
-          screening demand. I'm building a <strong>machine-learning surrogate</strong> that reproduces SWMM's key outputs
-          orders of magnitude faster — and, critically, pairs the speed-up with the same
+          screening demand. I built a <strong>machine-learning surrogate</strong> that reproduces SWMM's key outputs
+          orders of magnitude faster — and paired the speed-up with the same
           <strong>applicability-domain reliability layer</strong> from my landslide work, so the surrogate flags when it is
           extrapolating rather than returning a silent, out-of-distribution guess.
         </p>
         <a class="preprint-link" href="https://github.com/ayushkarkiofficial-lgtm/SWMM_surrogate_modeling" target="_blank" rel="noopener">
           View the code on GitHub → github.com/ayushkarkiofficial-lgtm/SWMM_surrogate_modeling
         </a>
-        <p class="method-label">Approach &amp; technical design</p>
+        <p class="method-label">Methods &amp; results</p>
         <ul class="method">
-          <li><strong>Training data:</strong> Latin-Hypercube sampling across rainfall depth, imperviousness, slope, conduit capacity, roughness and infiltration, driving hundreds of headless SWMM runs (pyswmm + swmmio) into a dense parameter-to-response dataset.</li>
-          <li><strong>Surrogate models:</strong> Random Forest, SVM and XGBoost regressors for peak outfall flow, total flooding volume and peak node surcharge — the same modelling stack proven in the landslide study.</li>
-          <li><strong>The reliability layer:</strong> a Mahalanobis-distance applicability-domain gate fitted on the training feature space, flagging in-domain vs out-of-domain inputs so the fast model defers when it should not be trusted.</li>
-          <li><strong>Honest validation:</strong> a parameter-extrapolation hold-out — train on the interior of the space, test on its edges — plus validation on a public EPA example network, testing whether the applicability-domain flag really predicts when to trust the surrogate.</li>
-          <li><strong>Target result:</strong> a runtime comparison — SWMM in minutes versus surrogate inference in milliseconds — that quantifies the speed-up without giving up on trust.</li>
+          <li><strong>Training data:</strong> Latin-Hypercube sampling across rainfall depth, imperviousness, slope, conduit capacity, roughness and infiltration drove hundreds of headless SWMM runs (pyswmm + swmmio) into a dense parameter-to-response dataset.</li>
+          <li><strong>Surrogate accuracy:</strong> Random Forest and XGBoost surrogates reproduce peak discharge at <strong>R² ≈ 0.98</strong>, classify flood occurrence at <strong>ROC-AUC ≈ 0.99</strong>, and predict flood volume at <strong>R² ≈ 0.92</strong> on cross-validated and parameter-extrapolation hold-outs.</li>
+          <li><strong>Speed-up in action:</strong> with the trained surrogate I ran a <strong>50,000-sample Monte-Carlo</strong> uncertainty analysis of flood risk — a sweep that is impractical at SWMM's native runtime.</li>
+          <li><strong>The reliability layer:</strong> a Mahalanobis-distance applicability-domain gate flags out-of-distribution inputs; surrogate error rises exactly where the gate fires, so the fast model defers when it should not be trusted.</li>
+          <li><strong>Adaptive sampling:</strong> AD-guided adaptive sampling targets under-covered regions of the input space, benchmarked against random augmentation.</li>
         </ul>
       </article>
     </div>
