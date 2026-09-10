@@ -143,8 +143,9 @@
     position: absolute; inset: 0; width: 100%; height: 100%;
     z-index: 1; pointer-events: none;
   }
+  .contours use { fill: none; }
   .contours .line { fill: none; stroke: var(--line); stroke-width: 1.15; opacity: 0.55; }
-  .contours .index { stroke: var(--accent); stroke-width: 1.7; opacity: 0.85; }
+  .contours .index { fill: none; stroke: var(--accent); stroke-width: 1.7; opacity: 0.85; }
   .contour-drift { animation: drift 16s ease-in-out infinite alternate; transform-origin: center; }
   @keyframes drift { from { transform: translateY(-7px); } to { transform: translateY(7px); } }
 
@@ -192,6 +193,38 @@
   .btn-ghost { border: 1px solid var(--line); color: var(--ink); }
   .btn-ghost:hover { border-color: var(--accent); color: var(--accent-deep); }
   .btn svg { width: 15px; height: 15px; }
+
+  /* ---------- hero portrait ---------- */
+  .hero-grid { display: grid; grid-template-columns: 1fr auto; gap: 56px; align-items: center; }
+  .hero-portrait {
+    width: 232px; height: 288px; object-fit: cover; object-position: center top;
+    border-radius: 6px; border: 1px solid var(--line);
+    box-shadow: 0 18px 44px -22px rgba(20,33,43,0.5);
+    background: var(--raise); flex: none;
+  }
+  html[data-theme="dark"] .hero-portrait { box-shadow: 0 18px 44px -22px rgba(0,0,0,0.7); }
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+    .hero-portrait { order: -1; width: 148px; height: 184px; }
+  }
+
+  /* ---------- selected work highlights ---------- */
+  .highlights { padding-top: 78px; padding-bottom: 78px; }
+  .hl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 800px) { .hl-grid { grid-template-columns: 1fr; } }
+  .hl-card {
+    display: flex; flex-direction: column; background: var(--raise);
+    border: 1px solid var(--line); border-radius: 4px; padding: 24px 24px 22px;
+    text-decoration: none; color: inherit; transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .hl-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 16px 32px -24px rgba(20,33,43,0.5); }
+  .hl-card .hl-kicker {
+    font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 12px;
+  }
+  .hl-card h3 { font-family: var(--display); font-weight: 500; font-size: 1.06rem; line-height: 1.3; letter-spacing: -0.01em; margin: 0 0 10px; }
+  .hl-card p { color: var(--ink-soft); font-size: 0.9rem; line-height: 1.5; margin: 0 0 16px; }
+  .hl-card .hl-go { margin-top: auto; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em; color: var(--accent); }
 
   /* ---------- reveal ---------- */
   .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
@@ -337,6 +370,7 @@
       <a href="#thesis" class="hide-sm">Thesis</a>
       <a href="#skills" class="hide-sm">Skills</a>
       <a href="#education" class="hide-sm">Education</a>
+      <a href="https://github.com/ayushkarkiofficial-lgtm" target="_blank" rel="noopener" class="hide-sm">GitHub ↗</a>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾ Dark</button>
       <a class="nav-cta" href="Ayush_Karki_Academic_CV.pdf" target="_blank" rel="noopener">CV ↓</a>
     </div>
@@ -365,37 +399,73 @@
     </g>
   </svg>
   <div class="hero-inner reveal">
-    <p class="hero-coord">27.7172° N · 85.3240° E — Kathmandu, Nepal</p>
-    <p class="availability"><span class="dot"></span>Seeking a funded MSc / PhD research assistantship · Spring / Fall 2027</p>
-    <h1>Ayush<br />Karki</h1>
-    <p class="role"><span>Civil Engineer · Water Resources, Hydrology &amp; Hydraulics · Remote Sensing · Applied Machine Learning</span></p>
-    <p class="thesis">I work across water resources engineering — <em>hydrology, hydraulics and fluid dynamics</em> — using remote sensing and machine learning to turn scarce environmental data into models that are accurate and honest about what they can, and cannot, predict.</p>
-    <div class="hero-actions">
-      <a class="btn btn-solid" href="Ayush_Karki_Academic_CV.pdf" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
-        Download CV
-      </a>
-      <a class="btn btn-ghost" href="mailto:ayushkarki.official@gmail.com">Email me</a>
+   <div class="hero-grid">
+    <div>
+      <p class="hero-coord">27.7172° N · 85.3240° E — Kathmandu, Nepal</p>
+      <p class="availability"><span class="dot"></span>Seeking a funded MSc / PhD research assistantship · Spring / Fall 2027</p>
+      <h1>Ayush<br />Karki</h1>
+      <p class="role"><span>Civil Engineering graduate · Hydrology &amp; Hydraulics · Python &amp; Machine Learning as applied techniques</span></p>
+      <p class="thesis">My major interest is in <em>hydrology and hydraulics</em> — how water moves through catchments, rivers and hydraulic structures. I use Python, machine learning and remote sensing as applied techniques to study these problems, especially where data is scarce and a model needs to stay honest about its own uncertainty. I'm hoping to join a research group as an assistant, contribute to this kind of work, and keep learning from people who do it well.</p>
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="Ayush_Karki_Academic_CV.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+          Download CV
+        </a>
+        <a class="btn btn-ghost" href="https://github.com/ayushkarkiofficial-lgtm" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58l-.01-2.02c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22l-.01 3.29c0 .32.22.7.83.58A12 12 0 0012 .5z"/></svg>
+          GitHub
+        </a>
+        <a class="btn btn-ghost" href="mailto:ayushkarki.official@gmail.com">Email me</a>
+      </div>
     </div>
+    <img class="hero-portrait" src="ayush-karki.jpg" alt="Portrait of Ayush Karki" width="232" height="288" loading="eager" />
+   </div>
   </div>
 </header>
 
 <main>
+  <section id="work" class="highlights">
+    <div class="wrap">
+      <p class="eyebrow reveal">Selected work</p>
+      <div class="hl-grid">
+        <a class="hl-card reveal" href="#research">
+          <p class="hl-kicker">Under review · Georisk · First author</p>
+          <h3>Landslide Susceptibility Mapping with a Reliability Layer</h3>
+          <p>An ML susceptibility map for the Karnali Highway corridor, paired with an applicability-domain layer that flags where the model should not be trusted.</p>
+          <span class="hl-go">Read more ↓</span>
+        </a>
+        <a class="hl-card reveal" href="#research">
+          <p class="hl-kicker">Personal project</p>
+          <h3>A Reliability-Aware ML Surrogate for EPA-SWMM</h3>
+          <p>A machine-learning surrogate that approximates SWMM stormwater outputs far faster, with the same reliability layer to flag out-of-distribution inputs.</p>
+          <span class="hl-go">Read more ↓</span>
+        </a>
+        <a class="hl-card reveal" href="#thesis">
+          <p class="hl-kicker">Final-year thesis</p>
+          <h3>Pre-Feasibility Study of the Manohara Irrigation Project</h3>
+          <p>A full hydrology-to-hydraulic-design workup for an irrigation scheme, from monthly flows and the 100-year flood to intake and canal design.</p>
+          <span class="hl-go">Read more ↓</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section id="about">
     <div class="wrap">
       <p class="eyebrow reveal">Profile</p>
       <div class="about-grid">
         <p class="about-lead reveal">
-          I'm a <strong>Civil Engineering graduate</strong> from Pulchowk Campus, IOE, Tribhuvan University. My interests span
-          <strong>water resources engineering</strong> — hydrology, hydraulics and fluid dynamics — together with
-          <strong>remote sensing</strong> and <strong>applied machine learning</strong>. I'm drawn to problems where physical
-          understanding and data-driven methods meet: building models that are not only accurate but honest about their own
-          uncertainty, and that hold up in the data-sparse conditions common to real-world engineering.
+          I'm a <strong>Civil Engineering graduate</strong> from Pulchowk Campus, IOE, Tribhuvan University. My major interest
+          is in <strong>hydrology and hydraulics</strong> — the movement of water through catchments, rivers and hydraulic
+          structures. To study these problems I apply <strong>Python and machine learning</strong>, along with remote sensing,
+          as practical tools. I'm drawn to work where physical understanding and data-driven methods meet: models that are not
+          only accurate but honest about their own uncertainty, and that hold up in the data-sparse conditions common to
+          real-world engineering.
         </p>
         <div class="facts reveal">
           <div class="fact"><span class="k">Degree</span><span class="v">B.E. Civil Engineering</span></div>
-          <div class="fact"><span class="k">Standing</span><span class="v">74.46% · First Division</span></div>
-          <div class="fact"><span class="k">Focus</span><span class="v">Water Resources · Remote Sensing · ML</span></div>
+          <div class="fact"><span class="k">Standing</span><span class="v">First Division</span></div>
+          <div class="fact"><span class="k">Focus</span><span class="v">Hydrology &amp; Hydraulics · Applied Python &amp; ML</span></div>
           <div class="fact"><span class="k">Based in</span><span class="v">Kathmandu, Nepal</span></div>
         </div>
       </div>
@@ -449,8 +519,8 @@
         <p class="summary">
           Physics-based stormwater models such as EPA-SWMM are the standard for urban-drainage and overflow planning, yet
           they are far too slow to run the thousands of times that uncertainty analysis, real-time control or city-scale
-          screening demand. I built a <strong>machine-learning surrogate</strong> that reproduces SWMM's key outputs
-          orders of magnitude faster — and paired the speed-up with the same
+          screening demand. As a personal project, I explored whether a <strong>machine-learning surrogate</strong> could
+          reproduce SWMM's key outputs much faster, and paired it with the same
           <strong>applicability-domain reliability layer</strong> from my landslide work, so the surrogate flags when it is
           extrapolating rather than returning a silent, out-of-distribution guess.
         </p>
@@ -566,7 +636,7 @@
         <div class="when">2019 — 2024</div>
         <div>
           <h3>B.E. in Civil Engineering</h3>
-          <p class="inst">Pulchowk Campus, Institute of Engineering, Tribhuvan University, Nepal · 74.46%, First Division.</p>
+          <p class="inst">Pulchowk Campus, Institute of Engineering, Tribhuvan University, Nepal · First Division.</p>
           <div class="coursework">
             <span class="chip">Hydrology</span>
             <span class="chip">Water Resources Engineering</span>
