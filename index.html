@@ -441,7 +441,7 @@
           <span class="hl-go">Read more ↓</span>
         </a>
         <a class="hl-card reveal" href="#research">
-          <p class="hl-kicker">Personal project</p>
+          <p class="hl-kicker">Personal project · ongoing</p>
           <h3>GR4J Rainfall-Runoff Model with Particle-Swarm Calibration</h3>
           <p>A conceptual daily rainfall-runoff model built from its equations and calibrated by a from-scratch particle-swarm optimizer, reaching KGE ≈ 0.88 on a monsoon-analogue catchment.</p>
           <span class="hl-go">Read more ↓</span>
@@ -545,7 +545,7 @@
 
       <article class="card reveal">
         <div class="card-top">
-          <span class="tag tag-live">Complete</span>
+          <span class="tag tag-live">Ongoing</span>
           <span class="tag tag-role">Personal project</span>
         </div>
         <h3>Physically-Based Rainfall-Runoff Modelling with Metaheuristic Calibration</h3>
@@ -554,14 +554,16 @@
           Conceptual rainfall-runoff models turn daily rainfall and evaporation into streamflow, and they are the workhorses of
           water-resource planning in data-sparse basins. I built the <strong>GR4J</strong> model directly from its governing
           equations and calibrated it with a <strong>particle-swarm optimizer I wrote from scratch</strong>, deliberately
-          choosing a snow-free, monsoon-analogue catchment as a stand-in for Nepali conditions.
+          choosing a snow-free, monsoon-analogue catchment as a stand-in for Nepali conditions. The work is ongoing: I am
+          extending it to stronger optimizers and to formal model-transferability testing.
         </p>
-        <p class="method-label">Methods &amp; results</p>
+        <p class="method-label">Methods &amp; progress</p>
         <ul class="method">
           <li><strong>Model from first principles:</strong> implemented the GR4J production and routing stores and the S-curve unit hydrographs directly from the governing equations (Perrin et al., 2003) in NumPy and pandas.</li>
           <li><strong>Clean data pipeline:</strong> turned raw CAMELS-AUS v2 records into a paired daily series of precipitation, PET and streamflow, with FAO-56 Hargreaves PET from tmax/tmin and catchment latitude, no-data handling and a long-term water-balance check.</li>
           <li><strong>Calibration by particle swarm:</strong> coded PSO from scratch to fit the four GR4J parameters with a two-year warm-up, guarding the search against non-physical parameter sets.</li>
-          <li><strong>Honest evaluation:</strong> scored with NSE, KGE (with its r, α and β decomposition) and PBIAS, reaching <strong>KGE ≈ 0.88</strong> and <strong>NSE ≈ 0.76</strong> with <strong>PBIAS under 1%</strong> on the evaluation period.</li>
+          <li><strong>Honest evaluation:</strong> scored with NSE, KGE (with its r, α and β decomposition) and PBIAS, reaching <strong>KGE ≈ 0.88</strong> and <strong>NSE ≈ 0.76</strong> with <strong>PBIAS under 1%</strong> on a first basin.</li>
+          <li><strong>Next:</strong> benchmarking further optimizers (immune / improved PSO and others) and testing transferability with the Klemeš split-sample and differential split-sample tests across multiple basins.</li>
         </ul>
       </article>
     </div>
