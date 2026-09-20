@@ -332,6 +332,16 @@
     font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.02em;
     padding: 5px 11px; border: 1px solid var(--line); border-radius: 2px; color: var(--ink-soft);
   }
+  .scores { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+  .score {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    min-width: 74px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 3px;
+  }
+  .score .band { font-family: var(--display); font-size: 1.32rem; font-weight: 600; color: var(--ink); line-height: 1; }
+  .score .lbl { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .score.overall { border-color: var(--accent); }
+  .score.overall .band { color: var(--accent-deep); }
+  html[data-theme="dark"] .score.overall .band { color: var(--accent); }
   @media (max-width: 640px) { .edu { grid-template-columns: 1fr; gap: 8px; } }
   .show-all {
     display: inline-flex; align-items: center; gap: 8px; margin-top: 16px;
@@ -662,6 +672,21 @@
   <section id="education">
     <div class="wrap">
       <p class="eyebrow reveal">Education</p>
+      <div class="edu reveal">
+        <div class="when">2026</div>
+        <div>
+          <h3>IELTS Academic</h3>
+          <p class="inst">Overall Band 8.0 · CEFR Level C1 — English-language proficiency.</p>
+          <div class="scores">
+            <div class="score"><span class="band">8.5</span><span class="lbl">Listening</span></div>
+            <div class="score"><span class="band">8.5</span><span class="lbl">Reading</span></div>
+            <div class="score"><span class="band">7.5</span><span class="lbl">Writing</span></div>
+            <div class="score"><span class="band">6.5</span><span class="lbl">Speaking</span></div>
+            <div class="score overall"><span class="band">8.0</span><span class="lbl">Overall</span></div>
+            <div class="score overall"><span class="band">C1</span><span class="lbl">CEFR</span></div>
+          </div>
+        </div>
+      </div>
       <div class="edu reveal">
         <div class="when">2019 — 2024</div>
         <div>
