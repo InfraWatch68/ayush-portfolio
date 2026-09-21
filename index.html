@@ -452,8 +452,8 @@
         </a>
         <a class="hl-card reveal" href="#research">
           <p class="hl-kicker">Personal project</p>
-          <h3>GR4J Rainfall-Runoff Model with Particle-Swarm Calibration</h3>
-          <p>A conceptual daily rainfall-runoff model built from its equations and calibrated by a from-scratch particle-swarm optimizer, reaching KGE ≈ 0.88 on a monsoon-analogue catchment.</p>
+          <h3>GR4J Rainfall-Runoff Model with Metaheuristic Calibration</h3>
+          <p>A conceptual daily rainfall-runoff model built from its governing equations, calibrated with differential evolution to KGE ≈ 0.88 and probed for equifinality with a from-scratch RS-SPSO search, on a monsoon-analogue catchment.</p>
           <span class="hl-go">Read more ↓</span>
         </a>
         <a class="hl-card reveal" href="#thesis">
@@ -563,10 +563,10 @@
         <p class="summary">
           Conceptual rainfall-runoff models turn daily rainfall and evaporation into streamflow, and they are the workhorses of
           water-resource planning in data-sparse basins. I built the <strong>GR4J</strong> model directly from its governing
-          equations and calibrated it with a <strong>particle-swarm optimizer I wrote from scratch</strong>, deliberately
-          choosing a snow-free, monsoon-analogue catchment as a stand-in for Nepali conditions. I then extended the search to a
-          respawning speciation-based PSO (RS-SPSO), also written from scratch, to expose the equifinality of well-performing
-          parameter sets, and stress-tested transferability with Klemeš split-sample and differential split-sample validation.
+          equations and calibrated it against a KGE objective with <strong>differential evolution</strong>, deliberately
+          choosing a snow-free, monsoon-analogue catchment as a stand-in for Nepali conditions. To probe the equifinality of
+          well-performing parameter sets I then ran a <strong>respawning speciation-based PSO (RS-SPSO) I wrote from scratch</strong>,
+          and stress-tested transferability with Klemeš split-sample and differential split-sample validation.
         </p>
         <a class="preprint-link" href="https://github.com/ayushkarkiofficial-lgtm/GR4J-metaheuristic-calibration" target="_blank" rel="noopener">
           View the code on GitHub → github.com/ayushkarkiofficial-lgtm/GR4J-metaheuristic-calibration
@@ -574,11 +574,11 @@
         <p class="method-label">Methods &amp; results</p>
         <ul class="method">
           <li><strong>Model from first principles:</strong> implemented the GR4J production and routing stores and the S-curve unit hydrographs directly from the governing equations (Perrin et al., 2003) in NumPy and pandas.</li>
-          <li><strong>Clean data pipeline:</strong> turned raw CAMELS-AUS v2 records into a paired daily series of precipitation, PET and streamflow, with FAO-56 Hargreaves PET from tmax/tmin and catchment latitude, no-data handling and a long-term water-balance check.</li>
-          <li><strong>Calibration by particle swarm:</strong> coded PSO from scratch to fit the four GR4J parameters with a two-year warm-up, guarding the search against non-physical parameter sets.</li>
-          <li><strong>Honest evaluation:</strong> scored with NSE, KGE (with its r, α and β decomposition) and PBIAS, reaching <strong>KGE ≈ 0.88</strong> and <strong>NSE ≈ 0.76</strong> with <strong>PBIAS under 1%</strong> on a first basin.</li>
-          <li><strong>Multimodal calibration &amp; equifinality:</strong> extended the search with a respawning speciation-based particle swarm (RS-SPSO), also coded from scratch, that recovers several distinct parameter sets all calibrating to <strong>KGE ≈ 0.84–0.87</strong> — a direct look at the equifinality hidden behind a single "best" fit.</li>
-          <li><strong>Transferability testing:</strong> applied the Klemeš split-sample and differential split-sample scheme — calibrating on the wettest multi-year block and validating on the driest, and vice-versa, with warm-up handled per split — to gauge how far the calibrated model travels between climatic regimes.</li>
+          <li><strong>Clean data pipeline:</strong> turned raw CAMELS-AUS v2 records into a paired daily series of precipitation, Morton PET and streamflow, with no-data handling and a long-term water-balance check.</li>
+          <li><strong>Baseline calibration:</strong> fit the four GR4J parameters against a KGE objective by differential evolution (SciPy) with a two-year warm-up, guarding the search against non-physical parameter sets.</li>
+          <li><strong>Honest evaluation:</strong> scored with NSE, KGE (with its r, α and β decomposition) and PBIAS, reaching <strong>KGE ≈ 0.88</strong> and <strong>NSE ≈ 0.76</strong> with <strong>PBIAS under 1%</strong> on the study catchment (CAMELS-AUS gauge 114001A).</li>
+          <li><strong>Multimodal calibration &amp; equifinality:</strong> extended the search with a respawning speciation-based particle swarm (RS-SPSO), coded from scratch, that recovers several distinct parameter sets all calibrating to <strong>KGE ≈ 0.84–0.87</strong> — a direct look at the equifinality hidden behind a single "best" fit.</li>
+          <li><strong>Transferability testing:</strong> applied the Klemeš split-sample and differential split-sample scheme — calibrating on the wettest multi-year block and validating on the driest, and vice-versa, with warm-up handled per split. Calibration <strong>KGE ≈ 0.83–0.91</strong> falls to validation <strong>KGE ≈ 0.23–0.48</strong> under regime transfer — a candid measure of how far the calibrated model does, and does not, travel between climates.</li>
         </ul>
       </article>
     </div>
